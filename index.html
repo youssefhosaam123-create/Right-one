@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Valentine 💖</title>
+
+<style>
+*{box-sizing:border-box;}
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#ffd1ea,#ff4f8b);
+text-align:center;
+color:white;
+overflow-x:hidden;
+}
+
+/* شاشة الدخول */
+#login{
+position:fixed;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffb6d9,#ff2f75);
+transition:0.8s ease;
+z-index:10;
+padding:20px;
+}
+
+input{
+padding:14px;
+border:none;
+border-radius:30px;
+text-align:center;
+width:100%;
+max-width:250px;
+font-size:16px;
+}
+
+button{
+padding:14px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff2f75;
+font-weight:bold;
+margin-top:15px;
+cursor:pointer;
+width:100%;
+max-width:250px;
+font-size:16px;
+}
+
+.hidden{
+opacity:0;
+transform:scale(1.2);
+pointer-events:none;
+}
+
+/* المحتوى */
+#content{
+opacity:0;
+transform:scale(0.9);
+transition:1s ease;
+padding:20px;
+}
+
+#content.show{
+opacity:1;
+transform:scale(1);
+}
+
+/* عداد */
+#counter{
+margin-top:10px;
+font-weight:bold;
+font-size:18px;
+}
+
+/* الجاليري */
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:20px;
+}
+
+.gallery img{
+width:100%;
+border-radius:15px;
+}
+
+/* رسالة */
+.message{
+background:rgba(255,255,255,0.2);
+padding:20px;
+border-radius:20px;
+margin-top:20px;
+}
+
+/* قلوب */
+.heart{
+position:fixed;
+bottom:-20px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+from{transform:translateY(0);}
+to{transform:translateY(-110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div id="login">
+<h2>ادخلي الباسورد 💕</h2>
+<input type="password" id="password" placeholder="Password">
+<button onclick="checkPassword()">دخول</button>
+<p id="error"></p>
+</div>
+
+<div id="content">
+<h1>Happy Valentine 💖</h1>
+<div id="counter"></div>
+
+<div class="gallery">
+<img src="4.JPG">
+<img src="6.JPG">
+<img src="9.jpg">
+<img src="1.JPG">
+<img src="5.JPG">
+<img src="3.jpg">
+<img src="8.jpg">
+<img src="10.jpeg">
+<img src="7.JPG">
+</div>
+
+<div class="message">
+<h3>رسالة ليكي ❤️</h3>
+<p>
+من يوم 19/4/2025 حياتي بقت أجمل 💗  
+وكل يوم بيعدي بحبك أكتر 💕
+</p>
+</div>
+</div>
+
+<script>
+function checkPassword(){
+const password=document.getElementById("password").value.trim();
+if(password==="1942025"){
+document.getElementById("login").classList.add("hidden");
+setTimeout(()=>{
+document.getElementById("login").style.display="none";
+document.getElementById("content").classList.add("show");
+},800);
+startCounter();
+createHearts();
+}else{
+document.getElementById("error").innerText="الباسورد غلط 😢";
+}
+}
+
+function startCounter(){
+const startDate=new Date("2025-04-19T00:00:00");
+const now=new Date();
+const diff=now-startDate;
+const days=Math.floor(diff/(1000*60*60*24));
+document.getElementById("counter").innerText=
+"عدّى "+days+" يوم على أحلى حاجة في حياتي 💖";
+}
+
+function createHearts(){
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💗";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+},600);
+}
+</script>
+
+</body>
+</html>
