@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Page 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
+<style>
+body {
+  margin:0; padding:0;
+  font-family:'Cairo', sans-serif;
+  display:flex; justify-content:center; align-items:center;
+  height:100vh;
+  background: linear-gradient(135deg,#ffd1ea,#ff7abf);
+  color:white;
+}
+#login {
+  text-align:center;
+}
+#login h2 {
+  font-family:'Dancing Script', cursive;
+  font-size:2.2em;
+  margin-bottom:20px;
+}
+input {
+  padding:15px;
+  border-radius:50px;
+  border:none;
+  width:250px;
+  text-align:center;
+  font-size:16px;
+  margin-bottom:15px;
+}
+button {
+  padding:14px 35px;
+  border-radius:50px;
+  border:none;
+  background:white;
+  color:#ff2f75;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover { transform: scale(1.05); }
+#error { margin-top:15px; color:white; font-size:1em; }
+</style>
+</head>
+<body>
+
+<div id="login">
+  <h2>Our passcode, ya Moza</h2>
+  <input type="password" id="password" placeholder="Enter passcode">
+  <br>
+  <button onclick="checkPassword()">Enter 💖</button>
+  <p id="error"></p>
+</div>
+
+<script>
+// الباسورد الصحيح
+const correctPassword = "1942025";
+
+function checkPassword(){
+  const input = document.getElementById("password").value.trim();
+  if(input === correctPassword){
+    alert("Password correct! Content will open."); // لاحقًا هنا تضع showContent أو أي شيء آخر
+    // هنا يمكن إضافة الكود لفتح المحتوى الرئيسي
+  } else {
+    document.getElementById("error").innerText = "Please remember me";
+  }
+}
+
+// تشغيل Enter key للباكسورد
+document.getElementById("password").addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    checkPassword();
+  }
+});
+</script>
+
+</body>
+</html>
