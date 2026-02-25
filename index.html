@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Valentine 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Cairo',sans-serif;
+
+background:linear-gradient(135deg,#ff9ec6,#ff4f8b);
+
+color:white;
+
+text-align:center;
+
+direction:rtl;
+
+overflow-x:hidden;
+
+}
+
+
+/* intro */
+
+#intro{
+
+position:fixed;
+
+width:100%;
+
+height:100vh;
+
+background:linear-gradient(135deg,#ff4f8b,#ff9ec6);
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:300;
+
+}
+
+.bigHeart{
+
+font-size:120px;
+
+animation:beat 1s infinite;
+
+cursor:pointer;
+
+}
+
+@keyframes beat{
+
+0%{transform:scale(1);}
+
+50%{transform:scale(1.2);}
+
+100%{transform:scale(1);}
+
+}
+
+
+/* login */
+
+#login{
+
+position:fixed;
+
+width:100%;
+
+height:100vh;
+
+display:none;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+background:linear-gradient(135deg,#ff9ec6,#ff4f8b);
+
+}
+
+
+.cover{
+
+width:230px;
+
+border-radius:20px;
+
+margin-bottom:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+}
+
+
+/* input */
+
+input{
+
+padding:15px;
+
+border-radius:50px;
+
+border:none;
+
+width:250px;
+
+text-align:center;
+
+font-size:16px;
+
+}
+
+
+button{
+
+padding:14px 35px;
+
+border-radius:50px;
+
+border:none;
+
+background:white;
+
+color:#ff4f8b;
+
+font-size:18px;
+
+margin-top:15px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+
+/* content */
+
+#content{
+
+display:none;
+
+padding:40px 20px;
+
+}
+
+
+/* counter */
+
+#counter{
+
+margin:25px;
+
+background:rgba(255,255,255,0.25);
+
+padding:18px 30px;
+
+border-radius:40px;
+
+font-size:18px;
+
+backdrop-filter:blur(5px);
+
+}
+
+
+/* slider */
+
+.slider{
+
+width:90%;
+
+max-width:400px;
+
+margin:30px auto;
+
+overflow:hidden;
+
+border-radius:25px;
+
+box-shadow:0 10px 40px rgba(0,0,0,0.3);
+
+}
+
+.slides{
+
+display:flex;
+
+transition:1s;
+
+}
+
+.slides img{
+
+width:100%;
+
+flex-shrink:0;
+
+}
+
+
+/* timeline */
+
+.timeline{
+
+max-width:600px;
+
+margin:40px auto;
+
+text-align:right;
+
+}
+
+.timeline-item{
+
+background:rgba(255,255,255,0.2);
+
+padding:15px;
+
+margin-bottom:10px;
+
+border-radius:15px;
+
+border-right:4px solid white;
+
+}
+
+
+/* message */
+
+.message-box{
+
+background:white;
+
+color:#ff4f8b;
+
+padding:30px;
+
+border-radius:25px;
+
+max-width:600px;
+
+margin:40px auto;
+
+}
+
+
+#typing-text::after{
+
+content:"|";
+
+animation:blink 0.7s infinite;
+
+}
+
+@keyframes blink{
+
+50%{opacity:0;}
+
+}
+
+
+/* hearts */
+
+.heart{
+
+position:fixed;
+
+bottom:-20px;
+
+animation:float 6s linear infinite;
+
+}
+
+@keyframes float{
+
+to{
+
+transform:translateY(-110vh);
+
+opacity:0;
+
+}
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- intro -->
+
+<div id="intro">
+
+<h2>اضغط على القلب ❤️</h2>
+
+<div class="bigHeart" onclick="startSite()">❤️</div>
+
+</div>
+
+
+<audio id="bgMusic" src="Salmaa.m4a" loop></audio>
+
+
+<!-- login -->
+
+<div id="login">
+
+<img src="9.jpg" class="cover">
+
+<h2>قولي الباسورد يا مزتي 💕</h2>
+
+<input type="password" id="password">
+
+<button onclick="checkPassword()">
+
+دخول 💖
+
+</button>
+
+<p id="error"></p>
+
+</div>
+
+
+
+<div id="content">
+
+<h1>عيد حب سعيد يا مزتي ❤️</h1>
+
+<div id="counter"></div>
+
+
+<!-- slider -->
+
+<div class="slider">
+
+<div class="slides" id="slides">
+
+<img src="4.JPG">
+<img src="6.JPG">
+<img src="9.jpg">
+<img src="1.JPG">
+<img src="5.JPG">
+<img src="3.jpg">
+<img src="8.jpg">
+<img src="10.jpeg">
+<img src="7.JPG">
+<img src="2.JPG">
+
+</div>
+
+</div>
+
+
+<div class="timeline">
+
+<h2 style="text-align:center">
+
+حكايتنا 📖
+
+</h2>
+
+<div class="timeline-item">
+
+6-2-2025  
+فيلمنا Zootopia 🦊🐰
+
+</div>
+
+<div class="timeline-item">
+
+12-4-2025  
+أول صورة لينا 📸
+
+</div>
+
+<div class="timeline-item">
+
+19-4-2025  
+أول بحبك ❤️
+
+</div>
+
+<div class="timeline-item">
+
+2-5-2025  
+أول ديت 🌹
+
+</div>
+
+</div>
+
+
+<div class="message-box">
+
+<h3>رسالتي ليكي ❤️</h3>
+
+<p id="typing-text"></p>
+
+</div>
+
+</div>
+
+
+<script>
+
+
+function startSite(){
+
+intro.style.display="none";
+
+login.style.display="flex";
+
+}
+
+
+/* password */
+
+function checkPassword(){
+
+if(password.value==="1942025"){
+
+bgMusic.play().catch(()=>{});
+
+login.style.display="none";
+
+content.style.display="block";
+
+startCounter();
+
+autoSlider();
+
+createHearts();
+
+typeWriter(message,"typing-text",70);
+
+}
+
+else{
+
+error.innerText="الباسورد غلط 😢";
+
+}
+
+}
+
+
+/* counter */
+
+function startCounter(){
+
+const startDate=new Date("2025-04-19");
+
+setInterval(()=>{
+
+const now=new Date();
+
+const diff=now-startDate;
+
+const d=Math.floor(diff/86400000);
+
+const h=Math.floor(diff/3600000)%24;
+
+const m=Math.floor(diff/60000)%60;
+
+const s=Math.floor(diff/1000)%60;
+
+counter.innerHTML=
+
+`من أول كلمة بحبك ❤️<br>
+
+بقالي معاكي ${d} يوم
+
+و ${h} ساعة
+
+و ${m} دقيقة
+
+و ${s} ثانية`;
+
+},1000);
+
+}
+
+
+/* auto slider */
+
+let index=0;
+
+function autoSlider(){
+
+setInterval(()=>{
+
+index++;
+
+if(index>9)index=0;
+
+slides.style.transform=
+
+"translateX(-"+(index*100)+"%)";
+
+},3000);
+
+}
+
+
+/* message */
+
+const message=
+
+"انا بحبك جدا ومش انهارده بس ولا بكره بس ولا حتى امبارح، بحبك في كل وقت من اول ما عرفتك لحد ما اموت وعايزك معايا في كل حاجة في حياتي";
+
+
+function typeWriter(text,id,speed){
+
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+document.getElementById(id).innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,speed);
+
+}
+
+}
+
+type();
+
+}
+
+
+/* hearts */
+
+function createHearts(){
+
+setInterval(()=>{
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML=["❤️","💗","✨"][Math.floor(Math.random()*3)];
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(Math.random()*20+20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+},500);
+
+}
+
+
+</script>
+
+
+</body>
+</html>
