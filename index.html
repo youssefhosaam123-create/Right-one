@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Valentine 💖</title>
+
+<style>
+
+:root {
+--primary-color:#ff4f8b;
+--secondary-color:#ffd1ea;
+--glass-bg:rgba(255,255,255,0.2);
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+
+font-family:Segoe UI;
+background:linear-gradient(135deg,#ffd1ea,#ff4f8b);
+text-align:center;
+color:white;
+direction:rtl;
+overflow-x:hidden;
+
+}
+
+/* intro */
+
+#intro{
+
+position:fixed;
+width:100%;
+height:100vh;
+background:linear-gradient(135deg,#ff4f8b,#ffb6d9);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:300;
+
+}
+
+.bigHeart{
+
+font-size:120px;
+animation:heartBeat 1s infinite;
+cursor:pointer;
+
+}
+
+@keyframes heartBeat{
+
+0%{transform:scale(1);}
+50%{transform:scale(1.3);}
+100%{transform:scale(1);}
+
+}
+
+/* login */
+
+#login{
+
+position:fixed;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffb6d9,#ff2f75);
+z-index:100;
+
+}
+
+.hidden{
+
+opacity:0;
+pointer-events:none;
+transform:translateY(-100%);
+transition:0.8s;
+
+}
+
+input{
+
+padding:15px;
+border-radius:50px;
+border:none;
+text-align:center;
+width:250px;
+font-size:16px;
+
+}
+
+button{
+
+padding:15px 40px;
+border-radius:50px;
+border:none;
+background:white;
+color:#ff2f75;
+font-size:18px;
+margin-top:20px;
+cursor:pointer;
+
+}
+
+#content{
+
+display:none;
+padding:40px 20px;
+
+}
+
+/* counter */
+
+#counter{
+
+margin:20px;
+background:var(--glass-bg);
+padding:15px 25px;
+border-radius:50px;
+display:inline-block;
+backdrop-filter:blur(5px);
+
+}
+
+.counter-num{
+
+font-weight:bold;
+
+}
+
+/* slider */
+
+.slider{
+
+position:relative;
+max-width:350px;
+margin:40px auto;
+
+}
+
+.slider img{
+
+width:100%;
+border-radius:20px;
+border:4px solid white;
+cursor:pointer;
+transition:0.4s;
+
+}
+
+.slider img:hover{
+
+transform:scale(1.05);
+
+}
+
+.nav{
+
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:white;
+color:#ff2f75;
+border:none;
+border-radius:50%;
+width:45px;
+height:45px;
+font-size:22px;
+cursor:pointer;
+
+}
+
+.left{left:-20px;}
+.right{right:-20px;}
+
+/* popup */
+
+#popup{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:200;
+
+}
+
+#popup img{
+
+max-width:90%;
+border-radius:20px;
+
+}
+
+/* timeline */
+
+.timeline{
+
+margin:40px auto;
+max-width:600px;
+text-align:right;
+
+}
+
+.timeline-item{
+
+background:var(--glass-bg);
+margin-bottom:15px;
+padding:15px;
+border-radius:15px;
+border-right:5px solid white;
+
+}
+
+/* message */
+
+.message-box{
+
+background:white;
+color:#ff2f75;
+padding:30px;
+border-radius:30px;
+margin:40px auto;
+max-width:600px;
+
+}
+
+#typing-text::after{
+
+content:"|";
+animation:blink 0.7s infinite;
+
+}
+
+@keyframes blink{
+
+50%{opacity:0;}
+
+}
+
+/* hearts */
+
+.heart{
+
+position:fixed;
+bottom:-20px;
+animation:float 5s linear infinite;
+
+}
+
+@keyframes float{
+
+from{transform:translateY(0);}
+to{transform:translateY(-110vh);opacity:0;}
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- intro -->
+
+<div id="intro">
+
+<h2>Tap The Heart ❤️</h2>
+
+<div class="bigHeart" onclick="startSite()">❤️</div>
+
+</div>
+
+
+<audio id="bgMusic" src="Salmaa.m4a" loop></audio>
+
+
+<!-- login -->
+
+<div id="login" style="display:none;">
+
+
+<img src="Coover.JPG"
+
+style="
+
+width:220px;
+border-radius:20px;
+margin-bottom:20px;
+
+">
+
+<h2>قولي الباسورد يا مزتي 💕</h2>
+
+
+<input type="password" id="password">
+
+<button onclick="checkPassword()">
+
+دخول 💖
+
+</button>
+
+<p id="error"></p>
+
+</div>
+
+
+<div id="content">
+
+<h1>Happy Valentine Ya Mozty 💖</h1>
+
+<div id="counter"></div>
+
+
+<!-- slider -->
+
+<div class="slider">
+
+<button class="nav left" onclick="prevSlide()">❮</button>
+
+<img id="slide" src="1.JPG">
+
+<button class="nav right" onclick="nextSlide()">❯</button>
+
+</div>
+
+
+<div class="timeline">
+
+<h2 style="text-align:center">حكايتنا 📖</h2>
+
+<div class="timeline-item">
+
+6-2-2025  
+Our movie Zootopia 🦊🐰
+
+</div>
+
+<div class="timeline-item">
+
+12-4-2025  
+First picture 📸
+
+</div>
+
+<div class="timeline-item">
+
+19-4-2025  
+First I Love U ❤️
+
+</div>
+
+<div class="timeline-item">
+
+2-5-2025  
+First Date 🌹
+
+</div>
+
+</div>
+
+
+<div class="message-box">
+
+<h3>رسالتي لك ❤️</h3>
+
+<p id="typing-text"></p>
+
+</div>
+
+</div>
+
+
+<div id="popup" onclick="closePopup()">
+
+<img id="popupImg">
+
+</div>
+
+
+
+<script>
+
+
+function startSite(){
+
+document.getElementById("intro").style.display="none";
+
+document.getElementById("login").style.display="flex";
+
+}
+
+
+/* password */
+
+function checkPassword(){
+
+const password=document.getElementById("password").value;
+
+if(password==="1942025"){
+
+const music=document.getElementById("bgMusic");
+
+music.muted=false;
+music.play().catch(()=>{});
+
+document.getElementById("login").classList.add("hidden");
+
+setTimeout(()=>{
+
+document.getElementById("login").style.display="none";
+
+document.getElementById("content").style.display="block";
+
+startCounter();
+
+createHearts();
+
+typeWriter(message,"typing-text",70);
+
+},800);
+
+}
+
+else{
+
+document.getElementById("error").innerText="الباسورد غلط 😢";
+
+}
+
+}
+
+
+/* message */
+
+const message="انا بحبك جدا ومش انهارده بس ولا بكره بس ولا حتى امبارح واول انا بحبك فكل وقت من اول ما عرفتك لحد ما اموت وعايزك معايا فكل حاجه فحياتي";
+
+
+function typeWriter(text,id,speed){
+
+let i=0;
+
+function typing(){
+
+if(i<text.length){
+
+document.getElementById(id).innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typing,speed);
+
+}
+
+}
+
+typing();
+
+}
+
+
+/* counter */
+
+function startCounter(){
+
+const startDate=new Date("2025-04-19");
+
+setInterval(()=>{
+
+const now=new Date();
+
+const diff=now-startDate;
+
+const days=Math.floor(diff/86400000);
+
+const hours=Math.floor(diff/3600000)%24;
+
+const minutes=Math.floor(diff/60000)%60;
+
+const seconds=Math.floor(diff/1000)%60;
+
+document.getElementById("counter").innerHTML=
+
+`من اول I Love You ❤️<br>
+
+بقالي معاكي ${days} يوم
+
+${hours} ساعة
+
+${minutes} دقيقة
+
+${seconds} ثانية 💖`;
+
+},1000);
+
+}
+
+
+/* slider */
+
+const images=[
+
+"4.JPG",
+"6.JPG",
+"9.jpg",
+"1.JPG",
+"5.JPG",
+"3.jpg",
+"8.jpg",
+"10.jpeg",
+"7.JPG",
+"2.JPG"
+
+];
+
+let current=0;
+
+function nextSlide(){
+
+current++;
+
+if(current>=images.length)current=0;
+
+document.getElementById("slide").src=images[current];
+
+}
+
+
+function prevSlide(){
+
+current--;
+
+if(current<0)current=images.length-1;
+
+document.getElementById("slide").src=images[current];
+
+}
+
+
+document.getElementById("slide").onclick=function(){
+
+document.getElementById("popup").style.display="flex";
+
+document.getElementById("popupImg").src=this.src;
+
+}
+
+
+function closePopup(){
+
+document.getElementById("popup").style.display="none";
+
+}
+
+
+/* hearts */
+
+function createHearts(){
+
+setInterval(()=>{
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML=["❤️","💗","✨","🌸"][Math.floor(Math.random()*4)];
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(Math.random()*20+20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),5000);
+
+},400);
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
